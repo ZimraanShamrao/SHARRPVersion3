@@ -640,6 +640,7 @@ The design for each application should:
 
 - Look modern and professional
 - Use large touch-friendly buttons
+- Include a search function in all Hazard Lists in both the reporting & resolution app
 - Be easy for college students to use
 - Require as few taps as possible
 - Prioritize speed and simplicity
