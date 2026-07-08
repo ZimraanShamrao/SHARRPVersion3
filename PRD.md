@@ -542,7 +542,7 @@ After submission:
 1. Save maintenance notes.
 2. Save progress image if provided. Name Format: HazardId_Progress#.jpg
 
-Ex: HZ-0001_Resolution1.jpg, HZ-0001_Progress2.jpg
+Ex: HZ-0001_Progress1.jpg, HZ-0001_Progress2.jpg
 
 1. Save maintenance update timestamp.
 2. Change status to In Progress if it isn't already.
@@ -614,6 +614,110 @@ Dashboard should be modular so widgets can be easily hidden or added later.
 
 The Analytics Dashboard application should be designed primarily for desktop and should adapt well to different computer/desktop screen sizes. The design should be clean, modern, intuitive, and resemble an ArcGIS dashboard in terms of design and usability.
 
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+Search Bar Feature
+
+A simple filter bar will be placed at the top of every existing Hazard List page in the application.
+
+This search bar should exist on:
+
+- Student Reporting App:
+  - Unresolved Hazards List
+  - In Progress Hazards List
+  - Resolved Hazards List
+- Resolution App:
+  - Unresolved Hazards List
+  - In Progress Hazards List
+
+The search bar should filter only the hazard cards that are currently displayed on that specific page. For example, searching from the Student In Progress Hazards page should only search and filter In Progress hazards. Searching from the Admin Unresolved Hazards page should only search and filter Unresolved hazards.
+
+As the user types into the search bar, hazard cards should dynamically disappear or reappear in real time based on keyword matches without requiring the user to press Enter, refresh the page, or navigate elsewhere. Clearing the search field should immediately restore the full list.
+
+The filtering should perform case-insensitive partial matching against relevant hazard information including:
+
+- Hazard ID
+- Short Description
+- Location
+- Submission Date
+
+Example behavior:
+
+Searching:
+
+"leak"
+
+might reduce:
+
+HZ-0001 - Ceiling leak in Dorm A
+
+HZ-0005 - Broken sink in Library
+
+HZ-0008 - Leak in cafeteria ceiling
+
+HZ-0012 - Overflowing trash can
+
+to:
+
+HZ-0001 - Ceiling leak in Dorm A
+
+HZ-0008 - Leak in cafeteria ceiling
+
+Searching:
+
+"library"
+
+would isolate:
+
+HZ-0005 - Broken sink in Library
+
+Searching:
+
+"HZ-0042"
+
+would isolate that specific hazard card immediately.
+
+The search functionality should preserve all existing behavior on the page including:
+
+- Existing sorting order (newest to oldest)
+- Hazard card click behavior
+- Navigation to the Hazard Detail Page
+- Status-specific filtering already performed by the page
+
+This should feel like filtering the currently visible cards rather than performing a new database search.
+
+---
+
+Hazard Lists Important Note
+
+Please ensure that throughout the entire ecosystem, whenever a student or admin is viewing any hazard list and selects a hazard card, they are taken to a dedicated Hazard Detail Page that displays the complete information for that hazard in an expanded view. Hazard lists should only display summary information such as Hazard ID, short description, location, and submission date. The Hazard Detail Page should act as the central location for viewing all information related to a specific hazard.
+
+For the Student Reporting App, this behavior should apply to the Unresolved Hazards List, In Progress Hazards List, and Resolved Hazards List. When a student selects any hazard card from any of these lists, they should be taken to a read-only Hazard Detail Page containing all relevant information for that hazard, including maintenance history and resolution information where applicable. Students should not have any action buttons on this page. The only available action should be a "Back to List" button that returns them to the list they came from.
+
+For the Resolution App, when an admin selects a hazard card from either the Unresolved Hazards List or the In Progress Hazards List, they should also be taken to a Hazard Detail Page displaying the full hazard information. However, unlike students, admins should have action buttons available on this page that depend on the list they entered from. Hazards opened from the Unresolved Hazards List should display the buttons "Mark Hazard As In Progress", "Mark Hazard As Resolved", and "Back to List". Hazards opened from the In Progress Hazards List should display the buttons "Add Progress Update", "Resolve Hazard", and "Back to List".
+
+---
+
+Navigation Clarification 
+
+I would like to add explicit Back buttons throughout the application so that users never need to rely on browser navigation and can always move back up the navigation hierarchy in a predictable way.
+
+For the Student Reporting App, the "Hazard List & Status" & "Report Hazard" pages themself should include a "Back to Home" button that returns the user to the Reporting App Home Page where they can choose between "Report Hazard" and "Hazard List & Status". Additionally, each individual hazard list page ("Unresolved Hazards", "In Progress Hazards", and "Resolved Hazards") should include a "Back to Hazard List & Status" button that returns the user to the Hazard List & Status page. Finally, every Hazard Detail Page should include a "Back to List" button that returns the user to the specific list page they came from.
+
+For the Resolution App, each hazard list page ("Unresolved Hazards" and "In Progress Hazards") should include a "Back to Home" button that returns the admin to the Resolution App Home Page where they can choose which list they want to view. Similarly, every admin Hazard Detail Page should include a "Back to List" button that returns the admin to the specific list page they came from.
+
+The intended navigation hierarchy for the Student Reporting App should therefore be:
+
+**Home Page → Student Validation → Reporting Form** (with Back to Home → Home)
+
+Home Page → Hazard List & Status → Hazard List → Hazard Detail Page
+
+The intended navigation hierarchy for the Resolution App should be:
+
+Admin Home Page → Hazard List → Hazard Detail Page → Action Page (if applicable)
+
+Every level of this hierarchy should include a corresponding Back button that returns the user to the previous level in the navigation chain.
+
 ---
 
 Error Handling
@@ -663,5 +767,303 @@ Provide:
 8. Supabase setup instructions
 9. List of any recommended improvements
 10. Future scaling recommendations
+
+---
+
+Folder Structure
+
+campus-hazard-ecosystem/
+
+├── apps/
+
+│   ├── reporting/                              # App 1 — Student Reporting (mobile-first)
+
+│   │   ├── app/
+
+│   │   │   ├── page.tsx                        # Home: Report a Hazard | Hazard List & Status
+
+│   │   │   ├── report/
+
+│   │   │   │   ├── validate/
+
+│   │   │   │   │   └── page.tsx                # Student ID validation
+
+│   │   │   │   └── form/
+
+│   │   │   │       └── page.tsx                # Hazard submission form  + Back to Home
+
+│   │   │   └── hazards/
+
+│   │   │       ├── page.tsx                    # Hazard List & Status hub (3 list buttons + Back to Home)
+
+│   │   │       ├── unresolved/
+
+│   │   │       │   ├── page.tsx                # List + search + Back to Hazard List & Status
+
+│   │   │       │   └── [hazardId]/
+
+│   │   │       │       └── page.tsx            # Read-only detail + Back to List
+
+│   │   │       ├── in-progress/
+
+│   │   │       │   ├── page.tsx
+
+│   │   │       │   └── [hazardId]/
+
+│   │   │       │       └── page.tsx
+
+│   │   │       └── resolved/
+
+│   │   │           ├── page.tsx
+
+│   │   │           └── [hazardId]/
+
+│   │   │               └── page.tsx
+
+│   │   ├── components/                         # Reporting-only UI (if any)
+
+│   │   ├── lib/
+
+│   │   │   └── actions/                        # Server Actions: validate ID, submit hazard, fetch lists/detail
+
+│   │   ├── package.json
+
+│   │   ├── next.config.ts
+
+│   │   ├── tsconfig.json
+
+│   │   └── postcss.config.mjs
+
+│   │
+
+│   ├── resolution/                             # App 2 — Admin Resolution (mobile-first)
+
+│   │   ├── app/
+
+│   │   │   ├── page.tsx                        # Admin Home: Login entry / post-login list chooser
+
+│   │   │   ├── login/
+
+│   │   │   │   └── page.tsx
+
+│   │   │   └── hazards/
+
+│   │   │       ├── page.tsx                    # Post-login: Unresolved | In Progress buttons
+
+│   │   │       ├── unresolved/
+
+│   │   │       │   ├── page.tsx                # List + search + Back to Home
+
+│   │   │       │   └── [hazardId]/
+
+│   │   │       │       ├── page.tsx            # Detail + Mark In Progress | Mark Resolved | Back to List
+
+│   │   │       │       ├── in-progress/
+
+│   │   │       │       │   └── page.tsx        # In Progress Submission + Back to Detail
+
+│   │   │       │       └── resolve/
+
+│   │   │       │           └── page.tsx        # Resolution Submission + Back to Detail
+
+│   │   │       └── in-progress/
+
+│   │   │           ├── page.tsx                # List + search + Back to Home
+
+│   │   │           └── [hazardId]/
+
+│   │   │               ├── page.tsx            # Detail + Add Progress Update | Mark Resolved | Back to List
+
+│   │   │               ├── in-progress/
+
+│   │   │               │   └── page.tsx        # In Progress Submission + Back to Detail
+
+│   │   │               └── resolve/
+
+│   │   │                   └── page.tsx        # Resolution Submission + Back to Detail
+
+│   │   ├── middleware.ts                       # Protect admin routes
+
+│   │   ├── lib/
+
+│   │   │   └── actions/                        # Server Actions: auth, status changes, uploads
+
+│   │   ├── package.json
+
+│   │   └── ...
+
+│   │
+
+│   └── analytics/                              # App 3 — Analytics Dashboard (desktop-first)
+
+│       ├── app/
+
+│       │   ├── page.tsx                        # Dashboard (widget grid)
+
+│       │   ├── login/
+
+│       │   │   └── page.tsx
+
+│       │   └── api/
+
+│       │       └── export/
+
+│       │           └── route.ts                # CSV export
+
+│       ├── components/
+
+│       │   └── widgets/
+
+│       │       ├── widget-registry.ts          # Rec #9: config-driven widget visibility
+
+│       │       ├── total-hazards.tsx
+
+│       │       ├── total-unresolved.tsx
+
+│       │       ├── total-in-progress.tsx
+
+│       │       ├── avg-resolution-time.tsx
+
+│       │       ├── common-locations.tsx
+
+│       │       └── monthly-reports.tsx
+
+│       ├── middleware.ts
+
+│       ├── lib/
+
+│       │   └── actions/
+
+│       ├── package.json
+
+│       └── ...
+
+│
+
+├── packages/
+
+│   ├── shared/
+
+│   │   ├── types/
+
+│   │   │   ├── hazard.ts
+
+│   │   │   ├── maintenance-update.ts
+
+│   │   │   └── student.ts
+
+│   │   ├── constants/
+
+│   │   │   ├── status.ts
+
+│   │   │   └── storage.ts                      # Bucket names, filename patterns
+
+│   │   ├── validation/
+
+│   │   │   ├── hazard-schemas.ts               # Zod: submission, progress, resolution
+
+│   │   │   └── env.ts                          # Rec #10: validated env schema
+
+│   │   ├── utils/
+
+│   │   │   ├── hazard-id.ts
+
+│   │   │   ├── date-format.ts
+
+│   │   │   ├── search-filter.ts                # Client-side card field filter
+
+│   │   │   └── image-compression.ts            # Rec #7: optional, low-complexity
+
+│   │   └── package.json
+
+│   │
+
+│   ├── supabase/
+
+│   │   ├── client.ts
+
+│   │   ├── server.ts
+
+│   │   ├── admin.ts                            # Service-role client (server only)
+
+│   │   ├── middleware.ts
+
+│   │   ├── queries/
+
+│   │   │   ├── hazards.ts                      # List, detail, analytics queries
+
+│   │   │   └── maintenance.ts
+
+│   │   └── storage/
+
+│   │       ├── upload-submission.ts
+
+│   │       ├── upload-progress.ts              # Rec #2: Progress# naming enforcement
+
+│   │       └── upload-resolution.ts
+
+│   │   └── package.json
+
+│   │
+
+│   ├── auth/
+
+│   │   ├── admin-session.ts                    # v1 admin/admin session
+
+│   │   ├── types.ts                            # AuthProvider interface for v2
+
+│   │   └── package.json
+
+│   │
+
+│   └── ui/
+
+│       ├── hazard-summary-card.tsx             # List card (4 summary fields)
+
+│       ├── hazard-list-search.tsx              # Search bar + placeholder text
+
+│       ├── maintenance-timeline.tsx            # Rec #1: chronological history
+
+│       ├── hazard-detail-layout.tsx
+
+│       ├── back-button.tsx                     # Reusable Back button
+
+│       ├── button.tsx
+
+│       └── package.json
+
+│
+
+├── supabase/
+
+│   ├── migrations/
+
+│   │   ├── 001_create_student_ids.sql
+
+│   │   ├── 002_create_hazard_id_counter.sql
+
+│   │   ├── 003_create_hazards.sql
+
+│   │   ├── 004_create_maintenance_updates.sql
+
+│   │   ├── 005_create_hazard_events.sql
+
+│   │   ├── 006_create_functions.sql            # generate_hazard_id, next_progress_number
+
+│   │   └── 007_enable_rls.sql
+
+│   └── seed.sql                                # Sample student IDs
+
+│
+
+├── turbo.json
+
+├── package.json                                # Workspace root
+
+├── .env.local.example
+
+├── .gitignore
+
+└── [README.md](http://README.md)
 
 Wait for approval before generating code.
