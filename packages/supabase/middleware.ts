@@ -1,14 +1,22 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function updateSession(request: NextRequest) {
+type SupabaseEnv = {
+  supabaseUrl: string;
+  supabaseAnonKey: string;
+};
+
+export async function updateSession(
+  request: NextRequest,
+  env: SupabaseEnv
+) {
   let supabaseResponse = NextResponse.next({
     request,
   });
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    env.supabaseUrl,
+    env.supabaseAnonKey,
     {
       cookies: {
         getAll() {
@@ -32,7 +40,6 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  // Do not run code between createServerClient and getClaims().
   await supabase.auth.getClaims();
 
   return supabaseResponse;
