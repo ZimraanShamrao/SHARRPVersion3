@@ -770,6 +770,50 @@ Provide:
 
 ---
 
+Monorepo Architecture
+
+The Campus Hazard ecosystem uses a Turborepo monorepo architecture to support multiple applications sharing a single backend and common codebase.
+
+Applications:
+
+- `apps/reporting` — Student hazard reporting application
+- `apps/resolution` — Administrator hazard resolution application
+- `apps/analytics` — Analytics and reporting dashboard
+
+Shared packages:
+
+- `packages/supabase` — Shared Supabase clients and database utilities
+- `packages/shared` — Shared types, utility functions, and business logic
+- `packages/ui` — Shared UI components used across multiple applications
+
+All new development should preserve this architecture and avoid duplicating logic across applications whenever possible.
+
+---
+
+Supabase Backend Architecture
+
+Supabase serves as the single backend for the entire Campus Hazard ecosystem.
+
+Primary database tables:
+
+- `hazards`
+- `maintenance_updates`
+- `hazard_events`
+- `student_ids`
+- `hazard_id_counter`
+
+Storage buckets:
+
+- `submission-images`
+- `progress-images`
+- `resolution-images`
+
+All database writes and storage uploads occur through server-side actions using the Supabase service role key.
+
+Client-side applications must never directly write to database tables or storage buckets.
+
+---
+
 Folder Structure
 
 campus-hazard-ecosystem/

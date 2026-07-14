@@ -12,7 +12,10 @@
     "build": "turbo build",
     "dev": "npm run sync-env && turbo dev",
     "lint": "turbo lint",
-    "start": "turbo start"
+    "start": "turbo start",
+    "db:push": "supabase db push",
+    "db:reset": "supabase db reset",
+    "db:status": "supabase migration list"
   },
   "devDependencies": {
     "turbo": "^2.5.4"
