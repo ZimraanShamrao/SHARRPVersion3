@@ -1,0 +1,14 @@
+export const SUBMISSION_IMAGES_BUCKET = "submission-images";
+
+export const ALLOWED_IMAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+] as const;
+
+export const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
+
+export function getSubmissionImagePath(hazardId: string): string {
+  return `${hazardId}_Submission.jpg`;
+}

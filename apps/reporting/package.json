@@ -12,6 +12,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@campus-hazard/shared": "*",
     "@campus-hazard/supabase": "*",
     "next": "^16.2.9",
     "react": "^19.2.7",
