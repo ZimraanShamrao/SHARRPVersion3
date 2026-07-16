@@ -1,0 +1,13 @@
+import type { NextConfig } from "next";
+import { loadEnvConfig } from "@next/env";
+import path from "path";
+
+const monorepoRoot = path.resolve(__dirname, "../..");
+const appDir = __dirname;
+
+loadEnvConfig(monorepoRoot);
+loadEnvConfig(appDir);
+
+const nextConfig: NextConfig = {};
+
+export default nextConfig;

@@ -1,0 +1,49 @@
+export default function AdminResolutionHomePage() {
+  return (
+    <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-50 via-white to-zinc-50 font-sans">
+      <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-16">
+        <header className="mb-14 text-center">
+          <div
+            aria-hidden="true"
+            className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-800 shadow-lg shadow-slate-800/20"
+          >
+            <svg
+              className="h-8 w-8 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"
+              />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
+            College Hazard Resolutions
+          </h1>
+          <p className="mt-4 text-base leading-relaxed text-zinc-600">
+            Choose a hazard list to review and update.
+          </p>
+        </header>
+
+        <nav aria-label="Admin hazard lists" className="flex flex-col gap-4">
+          <button
+            type="button"
+            className="flex h-14 w-full items-center justify-center rounded-xl bg-slate-800 px-6 text-base font-semibold text-white shadow-md shadow-slate-800/20 transition-colors hover:bg-slate-900 active:bg-black"
+          >
+            Unresolved Hazards
+          </button>
+          <button
+            type="button"
+            className="flex h-14 w-full items-center justify-center rounded-xl border-2 border-slate-800 bg-white px-6 text-base font-semibold text-slate-800 transition-colors hover:bg-slate-50 active:bg-slate-100"
+          >
+            In Progress Hazards
+          </button>
+        </nav>
+      </main>
+    </div>
+  );
+}

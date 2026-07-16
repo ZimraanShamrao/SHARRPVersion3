@@ -41,12 +41,12 @@ export default function Home() {
           >
             Report a Hazard
           </Link>
-          <button
-            type="button"
+          <Link
+            href="/hazards"
             className="flex h-14 w-full items-center justify-center rounded-xl border-2 border-emerald-600 bg-white px-6 text-base font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 active:bg-emerald-100"
           >
             Hazard List & Status
-          </button>
+          </Link>
         </nav>
       </main>
     </div>
