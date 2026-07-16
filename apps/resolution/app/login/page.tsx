@@ -10,7 +10,7 @@ import {
 const initialState: AdminLoginState = {};
 
 const inputClassName =
-  "h-14 w-full rounded-xl border border-zinc-300 bg-white px-4 text-base text-zinc-900 outline-none transition-colors placeholder:text-zinc-400 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 disabled:cursor-not-allowed disabled:opacity-60";
+  "h-14 min-w-0 w-full max-w-full rounded-xl border border-zinc-300 bg-white px-4 text-base text-zinc-900 outline-none transition-colors placeholder:text-zinc-400 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 disabled:cursor-not-allowed disabled:opacity-60";
 
 export default function AdminLoginPage() {
   const [state, formAction, isPending] = useActionState(
@@ -23,11 +23,11 @@ export default function AdminLoginPage() {
   const displayError = clientError ?? state.error;
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-50 via-white to-zinc-50 font-sans">
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-16">
+    <div className="flex min-h-dvh flex-col overflow-x-hidden bg-gradient-to-b from-slate-50 via-white to-zinc-50 font-sans">
+      <main className="mx-auto flex w-full min-w-0 max-w-md flex-1 flex-col justify-center px-4 py-12 pb-[max(3rem,env(safe-area-inset-bottom))] pt-[max(3rem,env(safe-area-inset-top))] sm:px-6 sm:py-16">
         <Link
           href="/"
-          className="mb-8 inline-flex h-12 items-center gap-2 self-start rounded-xl px-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 active:bg-slate-200"
+          className="mb-8 inline-flex min-h-12 shrink-0 items-center gap-2 self-start rounded-xl px-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 active:bg-slate-200"
         >
           <svg
             aria-hidden="true"
@@ -47,16 +47,16 @@ export default function AdminLoginPage() {
         </Link>
 
         <header className="mb-10 text-center">
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
+          <h1 className="text-balance break-words text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
             Admin Login
           </h1>
-          <p className="mt-3 text-base leading-relaxed text-zinc-600">
+          <p className="mt-3 text-base leading-relaxed text-pretty text-zinc-600">
             Enter your administrator credentials to continue.
           </p>
         </header>
 
         <form
-          className="flex flex-col gap-5"
+          className="flex min-w-0 flex-col gap-5"
           noValidate
           onSubmit={(event) => {
             event.preventDefault();
@@ -115,7 +115,7 @@ export default function AdminLoginPage() {
           {displayError ? (
             <p
               role="alert"
-              className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+              className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm break-words text-red-700"
             >
               {displayError}
             </p>
@@ -124,7 +124,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={isPending}
-            className="flex h-14 w-full items-center justify-center rounded-xl bg-slate-800 px-6 text-base font-semibold text-white shadow-md shadow-slate-800/20 transition-colors hover:bg-slate-900 active:bg-black disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl bg-slate-800 px-4 text-base font-semibold text-white shadow-md shadow-slate-800/20 transition-colors hover:bg-slate-900 active:bg-black disabled:cursor-not-allowed disabled:opacity-60 sm:px-6"
           >
             {isPending ? "Signing in…" : "Login"}
           </button>

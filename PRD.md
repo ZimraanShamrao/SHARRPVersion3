@@ -123,7 +123,7 @@ Purpose:
 - Students report hazards.
 - Anyone can view hazard statuses.
 
-The Reporting App application should be designed primarily for smartphones and should adapt well to different phone screen sizes. The design should be clean, modern, intuitive, and require as few steps as possible for students to submit reports.
+The Reporting App application should be designed primarily for smartphones and should adapt well to different phone screen sizes. The design should be clean, modern, intuitive, and require as few steps as possible for students to submit reports. All reporting and resolution interfaces are responsive, mobile-first, and must support common smartphone screen sizes without horizontal scrolling. Touch targets should be appropriately sized for mobile interaction.
 
 ---
 
@@ -376,7 +376,7 @@ Purpose:
 
 - Verify that the user is admin
 
-The Resolution App application should be designed primarily for smartphones and should adapt well to different phone screen sizes. The design should be clean, modern, and intuitive.
+The Resolution App application should be designed primarily for smartphones and should adapt well to different phone screen sizes. The design should be clean, modern, and intuitive. All reporting and resolution interfaces are responsive, mobile-first, and must support common smartphone screen sizes without horizontal scrolling. Touch targets should be appropriately sized for mobile interaction.
 
 ---
 

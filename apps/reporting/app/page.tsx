@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-emerald-50 via-white to-zinc-50 font-sans">
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-16">
+    <div className="flex min-h-dvh flex-col overflow-x-hidden bg-gradient-to-b from-emerald-50 via-white to-zinc-50 font-sans">
+      <main className="mx-auto flex w-full min-w-0 max-w-md flex-1 flex-col justify-center px-4 py-12 pb-[max(3rem,env(safe-area-inset-bottom))] pt-[max(3rem,env(safe-area-inset-top))] sm:px-6 sm:py-16">
         <header className="mb-14 text-center">
           <div
             aria-hidden="true"
-            className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-600 shadow-lg shadow-emerald-600/20"
+            className="mx-auto mb-6 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 shadow-lg shadow-emerald-600/20"
           >
             <svg
               className="h-8 w-8 text-white"
@@ -23,10 +23,10 @@ export default function Home() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
+          <h1 className="text-balance break-words text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
             Campus Hazard Reporting
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-zinc-600">
+          <p className="mt-4 text-base leading-relaxed text-pretty text-zinc-600">
             Report hazards on campus and check the status of existing reports.
           </p>
         </header>
@@ -37,13 +37,13 @@ export default function Home() {
         >
           <Link
             href="/report/validate"
-            className="flex h-14 w-full items-center justify-center rounded-xl bg-emerald-600 px-6 text-base font-semibold text-white shadow-md shadow-emerald-600/20 transition-colors hover:bg-emerald-700 active:bg-emerald-800"
+            className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl bg-emerald-600 px-4 text-base font-semibold text-white shadow-md shadow-emerald-600/20 transition-colors hover:bg-emerald-700 active:bg-emerald-800 sm:px-6"
           >
             Report a Hazard
           </Link>
           <Link
             href="/hazards"
-            className="flex h-14 w-full items-center justify-center rounded-xl border-2 border-emerald-600 bg-white px-6 text-base font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 active:bg-emerald-100"
+            className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl border-2 border-emerald-600 bg-white px-4 text-base font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 active:bg-emerald-100 sm:px-6"
           >
             Hazard List & Status
           </Link>

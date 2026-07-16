@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export default function ResolutionHomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-50 via-white to-zinc-50 font-sans">
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-16">
+    <div className="flex min-h-dvh flex-col overflow-x-hidden bg-gradient-to-b from-slate-50 via-white to-zinc-50 font-sans">
+      <main className="mx-auto flex w-full min-w-0 max-w-md flex-1 flex-col justify-center px-4 py-12 pb-[max(3rem,env(safe-area-inset-bottom))] pt-[max(3rem,env(safe-area-inset-top))] sm:px-6 sm:py-16">
         <header className="mb-14 text-center">
           <div
             aria-hidden="true"
-            className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-800 shadow-lg shadow-slate-800/20"
+            className="mx-auto mb-6 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-slate-800 shadow-lg shadow-slate-800/20"
           >
             <svg
               className="h-8 w-8 text-white"
@@ -23,10 +23,10 @@ export default function ResolutionHomePage() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
+          <h1 className="text-balance break-words text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
             College Hazard Resolutions
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-zinc-600">
+          <p className="mt-4 text-base leading-relaxed text-pretty text-zinc-600">
             Sign in to manage and resolve campus hazard reports.
           </p>
         </header>
@@ -34,7 +34,7 @@ export default function ResolutionHomePage() {
         <nav aria-label="Main navigation">
           <Link
             href="/login"
-            className="flex h-14 w-full items-center justify-center rounded-xl bg-slate-800 px-6 text-base font-semibold text-white shadow-md shadow-slate-800/20 transition-colors hover:bg-slate-900 active:bg-black"
+            className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl bg-slate-800 px-4 text-base font-semibold text-white shadow-md shadow-slate-800/20 transition-colors hover:bg-slate-900 active:bg-black sm:px-6"
           >
             Login
           </Link>

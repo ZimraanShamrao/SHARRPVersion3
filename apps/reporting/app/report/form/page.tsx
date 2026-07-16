@@ -19,7 +19,7 @@ const initialState: SubmitHazardState = {};
 const RESET_DELAY_MS = 10_000;
 
 const inputClassName =
-  "w-full rounded-xl border border-zinc-300 bg-white px-4 text-base text-zinc-900 outline-none transition-colors placeholder:text-zinc-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 disabled:cursor-not-allowed disabled:opacity-60";
+  "min-w-0 w-full max-w-full rounded-xl border border-zinc-300 bg-white px-4 text-base text-zinc-900 outline-none transition-colors placeholder:text-zinc-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 disabled:cursor-not-allowed disabled:opacity-60";
 
 export default function ReportFormPage() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -129,11 +129,11 @@ export default function ReportFormPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-emerald-50 via-white to-zinc-50 font-sans">
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col px-6 py-10">
+    <div className="flex min-h-dvh flex-col overflow-x-hidden bg-gradient-to-b from-emerald-50 via-white to-zinc-50 font-sans">
+      <main className="mx-auto flex w-full min-w-0 max-w-md flex-1 flex-col px-4 py-8 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(2rem,env(safe-area-inset-top))] sm:px-6 sm:py-10">
         <Link
           href="/"
-          className="mb-8 inline-flex h-12 items-center gap-2 self-start rounded-xl px-3 text-base font-medium text-emerald-700 transition-colors hover:bg-emerald-50 active:bg-emerald-100"
+          className="mb-8 inline-flex min-h-12 shrink-0 items-center gap-2 self-start rounded-xl px-3 text-base font-medium text-emerald-700 transition-colors hover:bg-emerald-50 active:bg-emerald-100"
         >
           <svg
             aria-hidden="true"
@@ -153,10 +153,10 @@ export default function ReportFormPage() {
         </Link>
 
         <header className="mb-8 text-center">
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
+          <h1 className="text-balance break-words text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
             Report a Hazard
           </h1>
-          <p className="mt-3 text-base leading-relaxed text-zinc-600">
+          <p className="mt-3 text-base leading-relaxed text-pretty text-zinc-600">
             Submit a photo and details about the hazard you observed.
           </p>
         </header>
@@ -164,15 +164,15 @@ export default function ReportFormPage() {
         {showSuccess ? (
           <div
             role="status"
-            className="rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-8 text-center"
+            className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-8 text-center sm:px-6"
           >
             <p className="text-lg font-semibold text-emerald-900">
               Thank you for your submission.
             </p>
-            <p className="mt-2 text-base text-emerald-800">
+            <p className="mt-2 break-words text-base text-emerald-800">
               Hazard ID: {successHazardId}
             </p>
-            <p className="mt-4 text-sm text-emerald-700">
+            <p className="mt-4 text-sm text-pretty text-emerald-700">
               This form will reset in 10 seconds so you can submit another
               report.
             </p>
@@ -180,7 +180,7 @@ export default function ReportFormPage() {
         ) : (
           <form
             ref={formRef}
-            className="flex flex-col gap-5"
+            className="flex min-w-0 flex-col gap-5"
             noValidate
             onSubmit={(event) => {
               event.preventDefault();
@@ -202,12 +202,12 @@ export default function ReportFormPage() {
             <section className="flex flex-col gap-3">
               <h2 className="text-sm font-medium text-zinc-700">Image Upload</h2>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col gap-3">
                 <button
                   type="button"
                   disabled={isPending}
                   onClick={() => cameraInputRef.current?.click()}
-                  className="flex h-12 flex-1 items-center justify-center rounded-xl border-2 border-emerald-600 bg-white px-4 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 active:bg-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl border-2 border-emerald-600 bg-white px-4 text-base font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 active:bg-emerald-100 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   Take Photo
                 </button>
@@ -215,7 +215,7 @@ export default function ReportFormPage() {
                   type="button"
                   disabled={isPending}
                   onClick={() => galleryInputRef.current?.click()}
-                  className="flex h-12 flex-1 items-center justify-center rounded-xl border-2 border-zinc-300 bg-white px-4 text-sm font-semibold text-zinc-700 transition-colors hover:bg-zinc-50 active:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl border-2 border-zinc-300 bg-white px-4 text-base font-semibold text-zinc-700 transition-colors hover:bg-zinc-50 active:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   Choose from Gallery
                 </button>
@@ -240,7 +240,7 @@ export default function ReportFormPage() {
               />
 
               {selectedImage ? (
-                <p className="text-sm text-zinc-600">
+                <p className="break-all text-sm text-zinc-600">
                   Selected: {selectedImage.name}
                 </p>
               ) : (
@@ -253,7 +253,7 @@ export default function ReportFormPage() {
                 <img
                   src={imagePreviewUrl}
                   alt="Selected hazard preview"
-                  className="max-h-64 w-full rounded-xl border border-zinc-200 object-cover"
+                  className="max-h-64 w-full max-w-full rounded-xl border border-zinc-200 object-cover"
                 />
               ) : null}
             </section>
@@ -312,7 +312,7 @@ export default function ReportFormPage() {
             {displayError ? (
               <p
                 role="alert"
-                className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm break-words text-red-700"
               >
                 {displayError}
               </p>
@@ -321,7 +321,7 @@ export default function ReportFormPage() {
             <button
               type="submit"
               disabled={isPending}
-              className="flex h-14 w-full items-center justify-center rounded-xl bg-emerald-600 px-6 text-base font-semibold text-white shadow-md shadow-emerald-600/20 transition-colors hover:bg-emerald-700 active:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl bg-emerald-600 px-4 text-base font-semibold text-white shadow-md shadow-emerald-600/20 transition-colors hover:bg-emerald-700 active:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-60 sm:px-6"
             >
               {isPending ? "Submitting…" : "Submit"}
             </button>

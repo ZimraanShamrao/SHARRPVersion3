@@ -1,11 +1,11 @@
 export default function AdminResolutionHomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-50 via-white to-zinc-50 font-sans">
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-16">
+    <div className="flex min-h-dvh flex-col overflow-x-hidden bg-gradient-to-b from-slate-50 via-white to-zinc-50 font-sans">
+      <main className="mx-auto flex w-full min-w-0 max-w-md flex-1 flex-col justify-center px-4 py-12 pb-[max(3rem,env(safe-area-inset-bottom))] pt-[max(3rem,env(safe-area-inset-top))] sm:px-6 sm:py-16">
         <header className="mb-14 text-center">
           <div
             aria-hidden="true"
-            className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-800 shadow-lg shadow-slate-800/20"
+            className="mx-auto mb-6 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-slate-800 shadow-lg shadow-slate-800/20"
           >
             <svg
               className="h-8 w-8 text-white"
@@ -21,10 +21,10 @@ export default function AdminResolutionHomePage() {
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
+          <h1 className="text-balance break-words text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
             College Hazard Resolutions
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-zinc-600">
+          <p className="mt-4 text-base leading-relaxed text-pretty text-zinc-600">
             Choose a hazard list to review and update.
           </p>
         </header>
@@ -32,13 +32,13 @@ export default function AdminResolutionHomePage() {
         <nav aria-label="Admin hazard lists" className="flex flex-col gap-4">
           <button
             type="button"
-            className="flex h-14 w-full items-center justify-center rounded-xl bg-slate-800 px-6 text-base font-semibold text-white shadow-md shadow-slate-800/20 transition-colors hover:bg-slate-900 active:bg-black"
+            className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl bg-slate-800 px-4 text-base font-semibold text-white shadow-md shadow-slate-800/20 transition-colors hover:bg-slate-900 active:bg-black sm:px-6"
           >
             Unresolved Hazards
           </button>
           <button
             type="button"
-            className="flex h-14 w-full items-center justify-center rounded-xl border-2 border-slate-800 bg-white px-6 text-base font-semibold text-slate-800 transition-colors hover:bg-slate-50 active:bg-slate-100"
+            className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl border-2 border-slate-800 bg-white px-4 text-base font-semibold text-slate-800 transition-colors hover:bg-slate-50 active:bg-slate-100 sm:px-6"
           >
             In Progress Hazards
           </button>
