@@ -35,24 +35,24 @@ export default function HazardListStatusPage() {
         </header>
 
         <nav aria-label="Hazard status lists" className="flex flex-col gap-4">
-          <button
-            type="button"
+          <Link
+            href="/hazards/unresolved"
             className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl bg-emerald-600 px-4 text-base font-semibold text-white shadow-md shadow-emerald-600/20 transition-colors hover:bg-emerald-700 active:bg-emerald-800 sm:px-6"
           >
             Unresolved Hazards
-          </button>
-          <button
-            type="button"
+          </Link>
+          <Link
+            href="/hazards/in-progress"
             className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl border-2 border-emerald-600 bg-white px-4 text-base font-semibold text-emerald-700 transition-colors hover:bg-emerald-50 active:bg-emerald-100 sm:px-6"
           >
             In Progress Hazards
-          </button>
-          <button
-            type="button"
+          </Link>
+          <Link
+            href="/hazards/resolved"
             className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl border-2 border-zinc-300 bg-white px-4 text-base font-semibold text-zinc-700 transition-colors hover:bg-zinc-50 active:bg-zinc-100 sm:px-6"
           >
             Resolved Hazards
-          </button>
+          </Link>
         </nav>
       </main>
     </div>

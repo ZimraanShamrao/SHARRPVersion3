@@ -27,3 +27,10 @@ export type MaintenanceUpdate = {
 export type InProgressHazardDetail = HazardDetail & {
   maintenanceUpdates: MaintenanceUpdate[];
 };
+
+export type ResolvedHazardDetail = HazardDetail & {
+  maintenanceUpdates: MaintenanceUpdate[];
+  resolutionImagePath: string | null;
+  resolutionNotes: string | null;
+  resolvedAt: string | null;
+};

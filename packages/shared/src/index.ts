@@ -12,7 +12,7 @@ export {
 
 export { HAZARD_STATUS, type HazardStatus } from "./constants/status";
 
-export type { HazardDetail, HazardListItem, InProgressHazardDetail, MaintenanceUpdate } from "./types/hazard";
+export type { HazardDetail, HazardListItem, InProgressHazardDetail, MaintenanceUpdate, ResolvedHazardDetail } from "./types/hazard";
 
 export { formatSubmissionDate } from "./utils/format-submission-date";
 export { filterHazardList } from "./utils/filter-hazard-list";
