@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AdminResolutionHomePage() {
   return (
     <div className="flex min-h-dvh flex-col overflow-x-hidden bg-gradient-to-b from-slate-50 via-white to-zinc-50 font-sans">
@@ -30,18 +32,18 @@ export default function AdminResolutionHomePage() {
         </header>
 
         <nav aria-label="Admin hazard lists" className="flex flex-col gap-4">
-          <button
-            type="button"
+          <Link
+            href="/hazards/unresolved"
             className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl bg-slate-800 px-4 text-base font-semibold text-white shadow-md shadow-slate-800/20 transition-colors hover:bg-slate-900 active:bg-black sm:px-6"
           >
             Unresolved Hazards
-          </button>
-          <button
-            type="button"
+          </Link>
+          <Link
+            href="/hazards/in-progress"
             className="flex min-h-14 w-full shrink-0 items-center justify-center rounded-xl border-2 border-slate-800 bg-white px-4 text-base font-semibold text-slate-800 transition-colors hover:bg-slate-50 active:bg-slate-100 sm:px-6"
           >
             In Progress Hazards
-          </button>
+          </Link>
         </nav>
       </main>
     </div>

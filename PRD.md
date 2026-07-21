@@ -419,7 +419,7 @@ Selecting either button should open the corresponding hazard list.
 
 ---
 
-Admin Unresolved Hazards Page
+Admin Unresolved Hazards List Page
 
 When selected:
 
@@ -461,7 +461,7 @@ Selecting Mark Hazard As In Progress should launch the existing In Progress Work
 
 ---
 
-Admin In Progress Hazards Page
+Admin In Progress Hazards List Page
 
 When selected:
 

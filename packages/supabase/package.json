@@ -7,7 +7,9 @@
     "./server": "./server.ts",
     "./admin": "./admin.ts",
     "./middleware": "./middleware.ts",
-    "./storage/upload-submission": "./storage/upload-submission.ts"
+    "./storage/upload-submission": "./storage/upload-submission.ts",
+    "./storage/upload-progress": "./storage/upload-progress.ts",
+    "./storage/upload-resolution": "./storage/upload-resolution.ts"
   },
   "dependencies": {
     "@campus-hazard/shared": "*",
