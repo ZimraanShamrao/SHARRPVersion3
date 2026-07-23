@@ -601,7 +601,7 @@ Title: College Hazard Analytics Dashboard
 
 Display:
 
-- Total Hazards
+- Total Hazard Reports (Unresolved, In Progress, & Resolved)
 - Total Unresolved Hazards
 - Total Hazards In Progress
 - Average Resolution Time
@@ -613,6 +613,32 @@ Include CSV export functionality.
 Dashboard should be modular so widgets can be easily hidden or added later.
 
 The Analytics Dashboard application should be designed primarily for desktop and should adapt well to different computer/desktop screen sizes. The design should be clean, modern, intuitive, and resemble an ArcGIS dashboard in terms of design and usability.
+
+---
+
+Add a collapse button to the top-left corner of every dashboard widget.
+
+When the collapse button is pressed:
+
+- The widget should smoothly collapse and disappear from the dashboard.
+
+- In its place, a thin green button should appear at the top of the dashboard container.
+
+- The button should display the widget's title (e.g., "Total Hazard Reports") so users know which widget is hidden.
+
+- Multiple collapsed widgets should appear side-by-side or wrap onto additional rows if necessary.
+
+When a collapsed widget's green button is pressed:
+
+- The corresponding widget should smoothly expand back into the dashboard.
+
+- The widget should return to its original location within the dashboard layout.
+
+- The green collapsed button should disappear.
+
+The collapsed/expanded state should only affect the current dashboard session and should not modify any underlying data.
+
+All widgets added in the future should support this same collapse/expand behavior.
 
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
