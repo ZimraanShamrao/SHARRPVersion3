@@ -601,6 +601,7 @@ Title: College Hazard Analytics Dashboard
 
 Display:
 
+- Search
 - Total Hazard Reports (Unresolved, In Progress, & Resolved)
 - Total Unresolved Hazards
 - Total Hazards In Progress
@@ -621,24 +622,55 @@ Add a collapse button to the top-left corner of every dashboard widget.
 When the collapse button is pressed:
 
 - The widget should smoothly collapse and disappear from the dashboard.
-
 - In its place, a thin green button should appear at the top of the dashboard container.
-
 - The button should display the widget's title (e.g., "Total Hazard Reports") so users know which widget is hidden.
-
 - Multiple collapsed widgets should appear side-by-side or wrap onto additional rows if necessary.
 
 When a collapsed widget's green button is pressed:
 
 - The corresponding widget should smoothly expand back into the dashboard.
-
 - The widget should return to its original location within the dashboard layout.
-
 - The green collapsed button should disappear.
 
 The collapsed/expanded state should only affect the current dashboard session and should not modify any underlying data.
 
 All widgets added in the future should support this same collapse/expand behavior.
+
+---
+
+Search Widget
+
+The Analytics Dashboard shall include a dedicated Search Widget that functions as a filtering panel for dashboard data.
+
+The Search Widget shall be positioned along the left side of the Analytics Dashboard. It shall be tall and rectangular, occupying most of the dashboard's vertical space while maintaining consistent padding from the dashboard edges. The widget shall be significantly narrower than it is tall, allowing the remaining dashboard widgets to occupy the space to its right. The Search Widget shall follow the same visual design language as all other dashboard widgets.
+
+The Search Widget shall support the same collapse and expand functionality as every other dashboard widget. When collapsed, it shall compress into the standard green collapsed button displaying the widget title. Selecting the collapsed button shall restore the Search Widget to its original size and location within the dashboard.
+
+At the top of the Search Widget shall be a Hazard Status Selector. This selector shall allow users to choose which hazard statuses are included in searches.
+
+Available hazard statuses:
+
+- Unresolved
+- In Progress
+- Resolved
+
+Requirements:
+
+- Multiple selections shall be supported.
+- Users may select any combination of the available hazard statuses.
+- Search results shall only include hazards matching the selected statuses.
+- If no hazard statuses are selected, no hazards shall be returned.
+
+As the user types into the search bar, hazard cards should dynamically disappear or reappear in real time based on keyword matches without requiring the user to press Enter, refresh the page, or navigate elsewhere. Clearing the search field should immediately restore the full list.
+
+The filtering should perform case-insensitive partial matching against relevant hazard information including:
+
+- Hazard ID
+- Short Description
+- Location
+- Submission Date
+
+The Search Widget shall be designed as a permanent filtering panel capable of supporting additional search and filtering controls in the future. Initial implementation shall be limited to the Hazard Status Selector while leaving sufficient space within the widget for future search and filtering functionality without requiring a redesign.
 
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 

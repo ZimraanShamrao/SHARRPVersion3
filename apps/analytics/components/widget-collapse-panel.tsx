@@ -14,7 +14,7 @@ export function WidgetCollapsePanel({
   children,
 }: WidgetCollapsePanelProps) {
   return (
-    <div className="relative h-full w-full">
+    <div className="relative flex h-full max-h-full min-h-0 w-full flex-col overflow-hidden">
       <button
         type="button"
         onClick={onCollapse}

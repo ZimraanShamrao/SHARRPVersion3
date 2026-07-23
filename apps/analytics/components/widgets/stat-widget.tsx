@@ -12,21 +12,21 @@ export function StatWidget({
   description,
 }: StatWidgetProps) {
   return (
-    <section className="flex h-full min-h-[240px] w-full flex-col overflow-hidden rounded-[2rem] border border-[#a7d7b5] bg-[#edf7ef] shadow-sm">
-      <header className="border-b border-[#a7d7b5] bg-[#d4edd9] px-5 py-4 text-center">
-        <h2 className="text-base font-semibold text-[#323232] sm:text-lg">
+    <section className="flex h-full min-h-[220px] w-full flex-col overflow-hidden rounded-[2rem] border border-[#a7d7b5] bg-[#edf7ef] shadow-sm">
+      <header className="border-b border-[#a7d7b5] bg-[#d4edd9] px-4 py-3 text-center">
+        <h2 className="text-sm font-semibold text-[#323232] min-[1200px]:text-base">
           {title}
         </h2>
         {subtitle ? (
-          <p className="mt-1 text-sm text-[#4b5563]">{subtitle}</p>
+          <p className="mt-0.5 text-xs text-[#4b5563] min-[1200px]:text-sm">{subtitle}</p>
         ) : null}
       </header>
 
-      <div className="flex flex-1 flex-col items-center justify-center p-5 text-center">
-        <p className="text-5xl font-bold tabular-nums text-[#991b1b] sm:text-6xl">
+      <div className="flex min-h-0 flex-1 flex-col items-center justify-center p-3 text-center min-[1200px]:p-4">
+        <p className="text-3xl font-bold tabular-nums text-[#991b1b] min-[1200px]:text-4xl min-[1400px]:text-5xl">
           {value.toLocaleString()}
         </p>
-        <p className="mt-3 text-sm font-medium text-[#991b1b]">{description}</p>
+        <p className="mt-2 text-xs font-medium text-[#991b1b] min-[1200px]:text-sm">{description}</p>
       </div>
     </section>
   );
