@@ -224,12 +224,13 @@ Ex: HZ-0001_Submission.jpg
 “Thank you for your submission.”
 
 - Display the generated Hazard ID.
+- Display in, bold red text, "Save your Hazard ID so that you can use it to search for and verify the status of your hazard."
 
 Example:
 
-“Thank you for your submission. Hazard ID: HZ-0014”
+“Thank you for your submission. Hazard ID: HZ-0014. Save your Hazard ID so that you can use it to search for and verify the status of your hazard.”
 
-- After 5 seconds, reset the form.
+- After 20 seconds, reset the form.
 
 ---
 
@@ -687,6 +688,8 @@ This search bar should exist on:
 - Resolution App:
   - Unresolved Hazards List
   - In Progress Hazards List
+
+
 
 The search bar should filter only the hazard cards that are currently displayed on that specific page. For example, searching from the Student In Progress Hazards page should only search and filter In Progress hazards. Searching from the Admin Unresolved Hazards page should only search and filter Unresolved hazards.
 

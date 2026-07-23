@@ -16,7 +16,8 @@ import {
 
 const initialState: SubmitHazardState = {};
 
-const RESET_DELAY_MS = 10_000;
+const RESET_DELAY_MS = 20_000;
+const RESET_DELAY_SECONDS = RESET_DELAY_MS / 1000;
 
 const inputClassName =
   "min-w-0 w-full max-w-full rounded-xl border border-zinc-300 bg-white px-4 text-base text-zinc-900 outline-none transition-colors placeholder:text-zinc-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 disabled:cursor-not-allowed disabled:opacity-60";
@@ -35,6 +36,7 @@ export default function ReportFormPage() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
   const [successHazardId, setSuccessHazardId] = useState<string | null>(null);
+  const [secondsRemaining, setSecondsRemaining] = useState(RESET_DELAY_SECONDS);
 
   const displayError = clientError ?? state.error;
   const showSuccess = successHazardId !== null;
@@ -58,6 +60,8 @@ export default function ReportFormPage() {
       return;
     }
 
+    setSecondsRemaining(RESET_DELAY_SECONDS);
+
     const timeoutId = window.setTimeout(() => {
       formRef.current?.reset();
       setSelectedImage(null);
@@ -71,7 +75,14 @@ export default function ReportFormPage() {
       setSuccessHazardId(null);
     }, RESET_DELAY_MS);
 
-    return () => window.clearTimeout(timeoutId);
+    const intervalId = window.setInterval(() => {
+      setSecondsRemaining((current) => Math.max(current - 1, 0));
+    }, 1000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.clearInterval(intervalId);
+    };
   }, [successHazardId]);
 
   function setFormImage(file: File) {
@@ -172,9 +183,14 @@ export default function ReportFormPage() {
             <p className="mt-2 break-words text-base text-emerald-800">
               Hazard ID: {successHazardId}
             </p>
+            <p className="mt-2 text-base font-bold text-pretty text-red-600">
+              Save your Hazard ID so that you can use it to search for and verify
+              the status of your hazard.
+            </p>
             <p className="mt-4 text-sm text-pretty text-emerald-700">
-              This form will reset in 10 seconds so you can submit another
-              report.
+              This form will reset in {secondsRemaining}{" "}
+              {secondsRemaining === 1 ? "second" : "seconds"} so you can submit
+              another report.
             </p>
           </div>
         ) : (
